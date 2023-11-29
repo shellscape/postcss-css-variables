@@ -1,6 +1,6 @@
 {
   "name": "postcss-var-replace",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "PostCSS plugin to replace CSS variables with their static values",
   "license": "MIT",
   "repository": {
