@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "noEmit": true
+  },
+  "extends": "./tsconfig.base.json",
+  "include": ["./.eslintrc.js", "./ava.config.js", "./tsup.config.ts", "./src", "./test"]
+}

@@ -17,7 +17,7 @@ let playgroundSettings = Immutable.Map({
 });
 
 let pluginSettings = Immutable.Map({
-	'postcss-css-variables': Immutable.Map({
+	'postcss-var-replace': Immutable.Map({
 		preserve: false
 	})
 });
@@ -56,7 +56,7 @@ let PlaygroundSettingsStore = assign({}, EventEmitter.prototype, {
 	dispatchToken: AppDispatcher.register(function(action) {
 		switch(action.actionType) {
 			case PlaygroundConstants.PLAYGROUND_SET_POSTCSS_CSS_VARIABLES_PRESERVE:
-				pluginSettings = pluginSettings.setIn(['postcss-css-variables', 'preserve'], action.value);
+				pluginSettings = pluginSettings.setIn(['postcss-var-replace', 'preserve'], action.value);
 				PlaygroundSettingsStore.emitChange();
 				break;
 

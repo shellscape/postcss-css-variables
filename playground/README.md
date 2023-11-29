@@ -1,6 +1,6 @@
-# [Playground](https://madlittlemods.github.io/postcss-css-variables/playground/)
+# [Playground](https://shellscape.github.io/postcss-var-replace/playground/)
 
-The code playground for `postcss-css-variables` is [available live here](https://madlittlemods.github.io/postcss-css-variables/playground/).
+The code playground for `postcss-var-replace` is [available live here](https://shellscape.github.io/postcss-var-replace/playground/).
 
 
 

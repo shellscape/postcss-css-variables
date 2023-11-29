@@ -36,7 +36,7 @@ export default class PlaygroundHeader extends React.Component {
 				<h1
 					className="playground-header-heading"
 				>
-					<a className="playground-header-heading-primary-title" href="https://github.com/MadLittleMods/postcss-css-variables">postcss-css-variables</a> Playground - <a href="https://github.com/postcss/postcss">PostCSS</a>
+					<a className="playground-header-heading-primary-title" href="https://github.com/shellscape/postcss-var-replace">postcss-var-replace</a> Playground - <a href="https://github.com/postcss/postcss">PostCSS</a>
 				</h1>
 
 				<div
@@ -74,13 +74,13 @@ export default class PlaygroundHeader extends React.Component {
 								<li className="playground-options-menu-item">
 									<label
 										className="playground-options-menu-item-label"
-										htmlFor="id-playground-postcss-css-variables-preserve-menu-option"
+										htmlFor="id-playground-postcss-var-replace-preserve-menu-option"
 									>
 										Preserve:
 									</label>
 									<input
 										type="checkbox"
-										id="id-playground-postcss-css-variables-preserve-menu-option"
+										id="id-playground-postcss-var-replace-preserve-menu-option"
 										checked={this.props.postcssCssVariablesPreserve}
 										onChange={this._onPostcssCssVariablesPreserveCheckboxChanged.bind(this)}
 									/>

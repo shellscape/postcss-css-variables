@@ -1,17 +1,53 @@
 {
-  "name": "postcss-css-variables",
-  "version": "0.19.0",
-  "description": "PostCSS plugin to transform CSS Custom Properties(CSS variables) syntax into a static representation",
-  "keywords": [
-    "postcss",
-    "css",
-    "postcss-plugin"
-  ],
-  "author": "Eric Eastwood <contact@ericeastwood.com> (http://ericeastwood.com/)",
+  "name": "postcss-var-replace",
+  "version": "1.0.0",
+  "description": "PostCSS plugin to replace CSS variables with their static values",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/MadLittleMods/postcss-css-variables.git"
+    "url": "https://github.com/shellscape/postcss-var-replace.git"
+  },
+  "author": "Andrew Powell <andrew@shellscape.org>",
+  "main": "dist/index.js",
+  "module": "dist/index.mjs",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.mts",
+        "default": "./dist/index.mjs"
+      },
+      "require": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "scripts": {
+    "build": "tsup --config tsup.config.ts",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "prepublishOnly": "pnpm build",
+    "pretest": "pnpm build",
+    "test": "mocha"
+  },
+  "files": [
+    "dist/**"
+  ],
+  "keywords": [
+    "css",
+    "plugin",
+    "postcss",
+    "postcss-plugin",
+    "replace",
+    "var",
+    "variables"
+  ],
+  "peerDependencies": {
+    "postcss": "^8.4.31"
   },
   "dependencies": {
     "balanced-match": "^1.0.0",
@@ -19,22 +55,23 @@
     "extend": "^3.0.1"
   },
   "devDependencies": {
+    "@types/balanced-match": "^3.0.2",
+    "@types/escape-string-regexp": "^2.0.1",
+    "@types/extend": "^3.0.4",
+    "ava": "^5.3.1",
     "bluebird": "^3.5.0",
     "chai": "^4.1.1",
     "chai-as-promised": "^7.1.1",
     "cssnano": "^4.0.0",
-    "eslint": "^4.4.1",
-    "eslint-plugin-react": "^7.1.0",
+    "eslint-config-shellscape": "^6.0.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.1.0",
     "mocha": "^5.2.0",
-    "postcss": "^8.2.6",
+    "postcss": "^8.4.31",
     "postcss-discard-comments": "^4.0.0",
-    "postcss-normalize-whitespace": "^4.0.0"
+    "postcss-normalize-whitespace": "^4.0.0",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.2"
   },
-  "peerDependencies": {
-    "postcss": "^8.2.6"
-  },
-  "scripts": {
-    "test": "mocha",
-    "lint": "eslint ."
-  }
+  "types": "dist/index.d.mts"
 }

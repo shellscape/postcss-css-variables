@@ -27,7 +27,7 @@ function gatherPlaygroundStoreState(props, state) {
 
 function gatherPlaygroundSettingsStoreState(props, state) {
 	return  {
-		postcssCssVariablesPreserve: PlaygroundSettingsStore.getPluginSettings().getIn(['postcss-css-variables', 'preserve']),
+		postcssCssVariablesPreserve: PlaygroundSettingsStore.getPluginSettings().getIn(['postcss-var-replace', 'preserve']),
 		shouldLiveReload: PlaygroundSettingsStore.getShouldLiveReload(),
 		tabWidth: PlaygroundSettingsStore.getTabWidth()
 	};

@@ -9,7 +9,7 @@ let EventEmitter = events.EventEmitter;
 
 
 import postcss from 'postcss';
-import cssvariables from 'postcss-css-variables';
+import cssvariables from 'postcss-var-replace';
 
 
 let CHANGE_EVENT = 'CHANGE_EVENT';
@@ -97,7 +97,7 @@ function updateProcessor(settings) {
 	settings = settings || {};
 
 	playgroundProcessor = postcss()
-		.use(cssvariables(settings.get('postcss-css-variables').toObject()));
+		.use(cssvariables(settings.get('postcss-var-replace').toObject()));
 
 	// Whenever the plugin option updates,
 	// we need to update the output

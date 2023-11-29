@@ -4,9 +4,9 @@ import Immutable from 'immutable';
 import localforage from 'localforage';
 
 localforage.config({
-	name		: 'postcss-css-variables-playground',
+	name		: 'postcss-var-replace-playground',
 	version		: 1.0,
-	storeName	: 'postcss-css-variables-playground-settings'
+	storeName	: 'postcss-var-replace-playground-settings'
 });
 
 
@@ -23,7 +23,7 @@ let actionMap = {
 		tabWidth: PlaygroundActions.setTabWidthOption
 	},
 	[playgroundSettingsStoreTypeKeys.pluginSettings]: {
-		'postcss-css-variables': {
+		'postcss-var-replace': {
 			preserve: PlaygroundActions.setPostcssCssVariablesPreserveOption
 		}
 	}
@@ -66,7 +66,7 @@ let settings = Immutable.fromJS((function() {
 		}
 	};
 	_tempSettings[playgroundSettingsStoreTypeKeys.pluginSettings] = {
-		'postcss-css-variables': {
+		'postcss-var-replace': {
 			preserve: {
 				value: false,
 				action:  PlaygroundActions.setPostcssCssVariablesPreserveOption
@@ -143,7 +143,7 @@ export function setTabWidth(value) {
 
 
 export function setPostCssCssVariablesPreserveOption(value) {
-	settings = settings.setIn([playgroundSettingsStoreTypeKeys.pluginSettings, 'postcss-css-variables', 'preserve', 'value'], value);
+	settings = settings.setIn([playgroundSettingsStoreTypeKeys.pluginSettings, 'postcss-var-replace', 'preserve', 'value'], value);
 	savePersistently();
 	PlaygroundActions.setPostcssCssVariablesPreserveOption(value);
 }

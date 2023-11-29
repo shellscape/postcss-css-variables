@@ -514,12 +514,12 @@ System.registerDynamic('npm:lodash.throttle@4.1.1/index.js', [], true, function 
 
   module.exports = throttle;
 });
-System.registerDynamic('postcss-css-variables-playground/postcss/playground.css', [], true, function ($__require, exports, module) {
+System.registerDynamic('postcss-var-replace-playground/postcss/playground.css', [], true, function ($__require, exports, module) {
   var global = this || self,
       GLOBAL = global;
   module.exports = JSON.parse('{}');
 });
-System.register('postcss-css-variables-playground/js/stores/PlaygroundSettingsStore.js', ['../dispatcher/AppDispatcher', '../constants/PlaygroundConstants', 'object-assign', 'immutable', 'events'], function (_export, _context) {
+System.register('postcss-var-replace-playground/js/stores/PlaygroundSettingsStore.js', ['../dispatcher/AppDispatcher', '../constants/PlaygroundConstants', 'object-assign', 'immutable', 'events'], function (_export, _context) {
 	"use strict";
 
 	var AppDispatcher, PlaygroundConstants, assign, Immutable, events, EventEmitter, CHANGE_EVENT, playgroundSettings, pluginSettings, PlaygroundSettingsStore;
@@ -543,7 +543,7 @@ System.register('postcss-css-variables-playground/js/stores/PlaygroundSettingsSt
 				tabWidth: 'inherit'
 			});
 			pluginSettings = Immutable.Map({
-				'postcss-css-variables': Immutable.Map({
+				'postcss-var-replace': Immutable.Map({
 					preserve: false
 				})
 			});
@@ -575,7 +575,7 @@ System.register('postcss-css-variables-playground/js/stores/PlaygroundSettingsSt
 				dispatchToken: AppDispatcher.register(function (action) {
 					switch (action.actionType) {
 						case PlaygroundConstants.PLAYGROUND_SET_POSTCSS_CSS_VARIABLES_PRESERVE:
-							pluginSettings = pluginSettings.setIn(['postcss-css-variables', 'preserve'], action.value);
+							pluginSettings = pluginSettings.setIn(['postcss-var-replace', 'preserve'], action.value);
 							PlaygroundSettingsStore.emitChange();
 							break;
 
@@ -14256,7 +14256,7 @@ System.registerDynamic('npm:balanced-match@1.0.0/index.js', [], true, function (
     return result;
   }
 });
-System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/resolve-value.js', ['balanced-match', './generate-scope-list', './is-node-under-scope', './gather-variable-dependencies', './find-node-ancestor-with-selector', './clone-splice-parent-onto-node-when'], true, function ($__require, exports, module) {
+System.registerDynamic('npm:postcss-var-replace@0.14.0/lib/resolve-value.js', ['balanced-match', './generate-scope-list', './is-node-under-scope', './gather-variable-dependencies', './find-node-ancestor-with-selector', './clone-splice-parent-onto-node-when'], true, function ($__require, exports, module) {
 	var global = this || self,
 	    GLOBAL = global;
 	var balanced = $__require('balanced-match');
@@ -14399,7 +14399,7 @@ System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/resolve-value.js', 
 
 	module.exports = resolveValue;
 });
-System.registerDynamic("npm:postcss-css-variables@0.14.0/lib/gather-variable-dependencies.js", [], true, function ($__require, exports, module) {
+System.registerDynamic("npm:postcss-var-replace@0.14.0/lib/gather-variable-dependencies.js", [], true, function ($__require, exports, module) {
 	var global = this || self,
 	    GLOBAL = global;
 	// Variables that referenced in some way by the target variable
@@ -14479,7 +14479,7 @@ System.registerDynamic('npm:escape-string-regexp@1.0.5/index.js', [], true, func
 		return str.replace(matchOperatorsRe, '\\$&');
 	};
 });
-System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/is-piece-always-ancestor-selector.js', [], true, function ($__require, exports, module) {
+System.registerDynamic('npm:postcss-var-replace@0.14.0/lib/is-piece-always-ancestor-selector.js', [], true, function ($__require, exports, module) {
 	var global = this || self,
 	    GLOBAL = global;
 	var alwaysAncestorSelector = {
@@ -14495,7 +14495,7 @@ System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/is-piece-always-anc
 
 	module.exports = isPieceIsAlwaysAncestorSelector;
 });
-System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/generate-direct-descendant-pieces-from-selector.js', [], true, function ($__require, exports, module) {
+System.registerDynamic('npm:postcss-var-replace@0.14.0/lib/generate-direct-descendant-pieces-from-selector.js', [], true, function ($__require, exports, module) {
 	var global = this || self,
 	    GLOBAL = global;
 	// Unit Tests: https://regex101.com/r/oS4zJ8/3
@@ -14517,7 +14517,7 @@ System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/generate-direct-des
 
 	module.exports = generateDirectDescendantPiecesFromSelector;
 });
-System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/is-under-scope.js', ['escape-string-regexp', './is-piece-always-ancestor-selector', './generate-direct-descendant-pieces-from-selector'], true, function ($__require, exports, module) {
+System.registerDynamic('npm:postcss-var-replace@0.14.0/lib/is-under-scope.js', ['escape-string-regexp', './is-piece-always-ancestor-selector', './generate-direct-descendant-pieces-from-selector'], true, function ($__require, exports, module) {
 	var global = this || self,
 	    GLOBAL = global;
 	var escapeStringRegexp = $__require('escape-string-regexp');
@@ -14660,7 +14660,7 @@ System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/is-under-scope.js',
 
 	module.exports = isUnderScope;
 });
-System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/is-node-under-scope.js', ['./is-under-scope', './generate-scope-list'], true, function ($__require, exports, module) {
+System.registerDynamic('npm:postcss-var-replace@0.14.0/lib/is-node-under-scope.js', ['./is-under-scope', './generate-scope-list'], true, function ($__require, exports, module) {
 	var global = this || self,
 	    GLOBAL = global;
 	var isUnderScope = $__require('./is-under-scope');
@@ -14675,7 +14675,7 @@ System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/is-node-under-scope
 
 	module.exports = isNodeUnderScope;
 });
-System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/generate-descendant-pieces-from-selector.js', [], true, function ($__require, exports, module) {
+System.registerDynamic('npm:postcss-var-replace@0.14.0/lib/generate-descendant-pieces-from-selector.js', [], true, function ($__require, exports, module) {
 	var global = this || self,
 	    GLOBAL = global;
 	// Unit Tests: https://regex101.com/r/oP0fM9/15
@@ -14699,7 +14699,7 @@ System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/generate-descendant
 
 	module.exports = generateDescendantPiecesFromSelector;
 });
-System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/generate-scope-list.js', ['./generate-descendant-pieces-from-selector'], true, function ($__require, exports, module) {
+System.registerDynamic('npm:postcss-var-replace@0.14.0/lib/generate-scope-list.js', ['./generate-descendant-pieces-from-selector'], true, function ($__require, exports, module) {
 	var global = this || self,
 	    GLOBAL = global;
 
@@ -14772,7 +14772,7 @@ System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/generate-scope-list
 
 	module.exports = generateScopeList;
 });
-System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/find-node-ancestor-with-selector.js', ['./generate-scope-list'], true, function ($__require, exports, module) {
+System.registerDynamic('npm:postcss-var-replace@0.14.0/lib/find-node-ancestor-with-selector.js', ['./generate-scope-list'], true, function ($__require, exports, module) {
 	var global = this || self,
 	    GLOBAL = global;
 	var generateScopeList = $__require('./generate-scope-list');
@@ -14808,7 +14808,7 @@ System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/find-node-ancestor-
 
 	module.exports = findNodeAncestorWithSelector;
 });
-System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/shallow-clone-node.js', [], true, function ($__require, exports, module) {
+System.registerDynamic('npm:postcss-var-replace@0.14.0/lib/shallow-clone-node.js', [], true, function ($__require, exports, module) {
 	var global = this || self,
 	    GLOBAL = global;
 	// Inspired by the PostCSS clone: https://github.com/postcss/postcss/blob/caba908d0f4e362466252202e6be84660c33d8a5/lib/node.js#L17
@@ -14851,7 +14851,7 @@ System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/shallow-clone-node.
 
 	module.exports = shallowCloneNode;
 });
-System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/clone-splice-parent-onto-node-when.js', ['./shallow-clone-node'], true, function ($__require, exports, module) {
+System.registerDynamic('npm:postcss-var-replace@0.14.0/lib/clone-splice-parent-onto-node-when.js', ['./shallow-clone-node'], true, function ($__require, exports, module) {
 	var global = this || self,
 	    GLOBAL = global;
 
@@ -14919,7 +14919,7 @@ System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/clone-splice-parent
 
 	module.exports = cloneSpliceParentOntoNodeWhen;
 });
-System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/resolve-decl.js', ['./resolve-value', './generate-scope-list', './gather-variable-dependencies', './is-under-scope', './is-node-under-scope', './shallow-clone-node', './find-node-ancestor-with-selector', './clone-splice-parent-onto-node-when'], true, function ($__require, exports, module) {
+System.registerDynamic('npm:postcss-var-replace@0.14.0/lib/resolve-decl.js', ['./resolve-value', './generate-scope-list', './gather-variable-dependencies', './is-under-scope', './is-node-under-scope', './shallow-clone-node', './find-node-ancestor-with-selector', './clone-splice-parent-onto-node-when'], true, function ($__require, exports, module) {
 	var global = this || self,
 	    GLOBAL = global;
 	var resolveValue = $__require('./resolve-value');
@@ -15077,7 +15077,7 @@ System.registerDynamic('npm:postcss-css-variables@0.14.0/lib/resolve-decl.js', [
 
 	module.exports = resolveDecl;
 });
-System.registerDynamic("npm:postcss-css-variables@0.14.0.json", [], true, function() {
+System.registerDynamic("npm:postcss-var-replace@0.14.0.json", [], true, function() {
   return {
     "main": "index.js",
     "format": "cjs",
@@ -15089,13 +15089,13 @@ System.registerDynamic("npm:postcss-css-variables@0.14.0.json", [], true, functi
   };
 });
 
-System.registerDynamic('npm:postcss-css-variables@0.14.0/index.js', ['postcss', 'extend', './lib/shallow-clone-node', './lib/resolve-value', './lib/resolve-decl'], true, function ($__require, exports, module) {
+System.registerDynamic('npm:postcss-var-replace@0.14.0/index.js', ['postcss', 'extend', './lib/shallow-clone-node', './lib/resolve-value', './lib/resolve-decl'], true, function ($__require, exports, module) {
 	var global = this || self,
 	    GLOBAL = global;
-	// PostCSS CSS Variables (postcss-css-variables)
+	// PostCSS CSS Variables (postcss-var-replace)
 	// v0.5.0
 	//
-	// https://github.com/MadLittleMods/postcss-css-variables
+	// https://github.com/shellscape/postcss-var-replace
 
 	// For Debugging
 	//var nomo = require('node-monkey').start({port: 50501});
@@ -15157,7 +15157,7 @@ System.registerDynamic('npm:postcss-css-variables@0.14.0/index.js', ['postcss', 
 		preserveAtRulesOrder: false
 	};
 
-	module.exports = postcss.plugin('postcss-css-variables', function (options) {
+	module.exports = postcss.plugin('postcss-var-replace', function (options) {
 
 		var opts = extend({}, defaults, options);
 
@@ -15356,7 +15356,7 @@ System.registerDynamic('npm:postcss-css-variables@0.14.0/index.js', ['postcss', 
 		};
 	});
 });
-System.register('postcss-css-variables-playground/js/stores/PlaygroundStore.js', ['../dispatcher/AppDispatcher', '../constants/PlaygroundConstants', '../stores/PlaygroundSettingsStore', 'object-assign', 'immutable', 'events', 'postcss', 'postcss-css-variables'], function (_export, _context) {
+System.register('postcss-var-replace-playground/js/stores/PlaygroundStore.js', ['../dispatcher/AppDispatcher', '../constants/PlaygroundConstants', '../stores/PlaygroundSettingsStore', 'object-assign', 'immutable', 'events', 'postcss', 'postcss-var-replace'], function (_export, _context) {
 	"use strict";
 
 	var AppDispatcher, PlaygroundConstants, PlaygroundSettingsStore, assign, Immutable, events, postcss, cssvariables, EventEmitter, CHANGE_EVENT, keyboardActionStream, playgroundProcessor, postcssUnprocessedInputText, processingResult, PlaygroundStore;
@@ -15365,7 +15365,7 @@ System.register('postcss-css-variables-playground/js/stores/PlaygroundStore.js',
 	function updateProcessor(settings) {
 		settings = settings || {};
 
-		playgroundProcessor = postcss().use(cssvariables(settings.get('postcss-css-variables').toObject()));
+		playgroundProcessor = postcss().use(cssvariables(settings.get('postcss-var-replace').toObject()));
 
 		// Whenever the plugin option updates,
 		// we need to update the output
@@ -15587,7 +15587,7 @@ System.registerDynamic('npm:object-assign@4.1.1/index.js', [], true, function ($
 		return to;
 	};
 });
-System.register('postcss-css-variables-playground/js/components/PlaygroundHeader.js', ['npm:systemjs-plugin-babel@0.0.25/babel-helpers/classCallCheck.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/createClass.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/possibleConstructorReturn.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/inherits.js', 'react', '../stores/PlaygroundStore', '../actions/PlaygroundActions', '../services/PlaygroundPersistentSettingsDAO', 'object-assign'], function (_export, _context) {
+System.register('postcss-var-replace-playground/js/components/PlaygroundHeader.js', ['npm:systemjs-plugin-babel@0.0.25/babel-helpers/classCallCheck.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/createClass.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/possibleConstructorReturn.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/inherits.js', 'react', '../stores/PlaygroundStore', '../actions/PlaygroundActions', '../services/PlaygroundPersistentSettingsDAO', 'object-assign'], function (_export, _context) {
 	"use strict";
 
 	var _classCallCheck, _createClass, _possibleConstructorReturn, _inherits, React, PlaygroundStore, PlaygroundActions, PlaygroundPersistentSettingsDAO, assign, PlaygroundHeader;
@@ -15649,7 +15649,7 @@ System.register('postcss-css-variables-playground/js/components/PlaygroundHeader
 							className: 'playground-header'
 						}, React.createElement('h1', {
 							className: 'playground-header-heading'
-						}, React.createElement('a', { className: 'playground-header-heading-primary-title', href: 'https://github.com/MadLittleMods/postcss-css-variables' }, 'postcss-css-variables'), ' Playground - ', React.createElement('a', { href: 'https://github.com/postcss/postcss' }, 'PostCSS')), React.createElement('div', {
+						}, React.createElement('a', { className: 'playground-header-heading-primary-title', href: 'https://github.com/shellscape/postcss-var-replace' }, 'postcss-var-replace'), ' Playground - ', React.createElement('a', { href: 'https://github.com/postcss/postcss' }, 'PostCSS')), React.createElement('div', {
 							className: 'playground-options-holder',
 							ref: 'playgroundOptionsHolder'
 						}, React.createElement('input', {
@@ -15673,10 +15673,10 @@ System.register('postcss-css-variables-playground/js/components/PlaygroundHeader
 							className: 'playground-options-menu-options-group'
 						}, React.createElement('li', { className: 'playground-options-menu-item' }, React.createElement('label', {
 							className: 'playground-options-menu-item-label',
-							htmlFor: 'id-playground-postcss-css-variables-preserve-menu-option'
+							htmlFor: 'id-playground-postcss-var-replace-preserve-menu-option'
 						}, 'Preserve:'), React.createElement('input', {
 							type: 'checkbox',
-							id: 'id-playground-postcss-css-variables-preserve-menu-option',
+							id: 'id-playground-postcss-var-replace-preserve-menu-option',
 							checked: this.props.postcssCssVariablesPreserve,
 							onChange: this._onPostcssCssVariablesPreserveCheckboxChanged.bind(this)
 						}))), React.createElement('hr', null), React.createElement('ul', {
@@ -34007,7 +34007,7 @@ System.registerDynamic("github:wjbryant/taboverride@4.0.3.json", [], true, funct
   }, t);
 });
 
-System.register('postcss-css-variables-playground/js/components/EditorTextarea.js', ['npm:systemjs-plugin-babel@0.0.25/babel-helpers/classCallCheck.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/createClass.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/possibleConstructorReturn.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/inherits.js', 'react', 'wjbryant/taboverride'], function (_export, _context) {
+System.register('postcss-var-replace-playground/js/components/EditorTextarea.js', ['npm:systemjs-plugin-babel@0.0.25/babel-helpers/classCallCheck.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/createClass.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/possibleConstructorReturn.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/inherits.js', 'react', 'wjbryant/taboverride'], function (_export, _context) {
 	"use strict";
 
 	var _classCallCheck, _createClass, _possibleConstructorReturn, _inherits, React, tabOverride, EditorTextarea;
@@ -34077,7 +34077,7 @@ System.register('postcss-css-variables-playground/js/components/EditorTextarea.j
 		}
 	};
 });
-System.register('postcss-css-variables-playground/js/components/PlaygroundApp.js', ['npm:systemjs-plugin-babel@0.0.25/babel-helpers/classCallCheck.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/createClass.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/possibleConstructorReturn.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/inherits.js', 'react', 'object-assign', 'classnames', 'lodash.throttle', '../../postcss/playground.css', '../stores/PlaygroundStore', '../stores/PlaygroundSettingsStore', '../actions/PlaygroundActions', './PlaygroundHeader', './EditorTextarea'], function (_export, _context) {
+System.register('postcss-var-replace-playground/js/components/PlaygroundApp.js', ['npm:systemjs-plugin-babel@0.0.25/babel-helpers/classCallCheck.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/createClass.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/possibleConstructorReturn.js', 'npm:systemjs-plugin-babel@0.0.25/babel-helpers/inherits.js', 'react', 'object-assign', 'classnames', 'lodash.throttle', '../../postcss/playground.css', '../stores/PlaygroundStore', '../stores/PlaygroundSettingsStore', '../actions/PlaygroundActions', './PlaygroundHeader', './EditorTextarea'], function (_export, _context) {
 	"use strict";
 
 	var _classCallCheck, _createClass, _possibleConstructorReturn, _inherits, React, assign, classnames, throttle, PlaygroundStore, PlaygroundSettingsStore, PlaygroundActions, PlaygroundHeader, EditorTextarea, PlaygroundApp;
@@ -34095,7 +34095,7 @@ System.register('postcss-css-variables-playground/js/components/PlaygroundApp.js
 
 	function gatherPlaygroundSettingsStoreState(props, state) {
 		return {
-			postcssCssVariablesPreserve: PlaygroundSettingsStore.getPluginSettings().getIn(['postcss-css-variables', 'preserve']),
+			postcssCssVariablesPreserve: PlaygroundSettingsStore.getPluginSettings().getIn(['postcss-var-replace', 'preserve']),
 			shouldLiveReload: PlaygroundSettingsStore.getShouldLiveReload(),
 			tabWidth: PlaygroundSettingsStore.getTabWidth()
 		};
@@ -34659,7 +34659,7 @@ System.registerDynamic('npm:flux@2.1.1/index.js', ['./lib/Dispatcher', 'process'
 
   module.exports.Dispatcher = $__require('./lib/Dispatcher');
 });
-System.register('postcss-css-variables-playground/js/dispatcher/AppDispatcher.js', ['flux'], function (_export, _context) {
+System.register('postcss-var-replace-playground/js/dispatcher/AppDispatcher.js', ['flux'], function (_export, _context) {
   "use strict";
 
   var flux, Dispatcher, AppDispatcher;
@@ -34745,7 +34745,7 @@ System.registerDynamic("npm:keymirror@0.1.1/index.js", [], true, function ($__re
 
   module.exports = keyMirror;
 });
-System.register('postcss-css-variables-playground/js/constants/PlaygroundConstants.js', ['keymirror'], function (_export, _context) {
+System.register('postcss-var-replace-playground/js/constants/PlaygroundConstants.js', ['keymirror'], function (_export, _context) {
 	"use strict";
 
 	var keyMirror;
@@ -34768,7 +34768,7 @@ System.register('postcss-css-variables-playground/js/constants/PlaygroundConstan
 		}
 	};
 });
-System.register('postcss-css-variables-playground/js/actions/PlaygroundActions.js', ['../dispatcher/AppDispatcher', '../constants/PlaygroundConstants'], function (_export, _context) {
+System.register('postcss-var-replace-playground/js/actions/PlaygroundActions.js', ['../dispatcher/AppDispatcher', '../constants/PlaygroundConstants'], function (_export, _context) {
 	"use strict";
 
 	var AppDispatcher, PlaygroundConstants, TodoActions;
@@ -42143,7 +42143,7 @@ System.registerDynamic("npm:localforage@1.5.0/dist/localforage.js", ["process"],
             }, { "3": 3 }] }, {}, [4])(4);
     });
 });
-System.register('postcss-css-variables-playground/js/services/PlaygroundPersistentSettingsDAO.js', ['npm:systemjs-plugin-babel@0.0.25/babel-helpers/defineProperty.js', '../actions/PlaygroundActions', 'immutable', 'localforage'], function (_export, _context) {
+System.register('postcss-var-replace-playground/js/services/PlaygroundPersistentSettingsDAO.js', ['npm:systemjs-plugin-babel@0.0.25/babel-helpers/defineProperty.js', '../actions/PlaygroundActions', 'immutable', 'localforage'], function (_export, _context) {
 	"use strict";
 
 	var _defineProperty, PlaygroundActions, Immutable, localforage, _actionMap, playgroundSettingsStoreKey, playgroundSettingsStoreTypeKeys, actionMap, settings;
@@ -42228,7 +42228,7 @@ System.register('postcss-css-variables-playground/js/services/PlaygroundPersiste
 	_export('setTabWidth', setTabWidth);
 
 	function setPostCssCssVariablesPreserveOption(value) {
-		settings = settings.setIn([playgroundSettingsStoreTypeKeys.pluginSettings, 'postcss-css-variables', 'preserve', 'value'], value);
+		settings = settings.setIn([playgroundSettingsStoreTypeKeys.pluginSettings, 'postcss-var-replace', 'preserve', 'value'], value);
 		savePersistently();
 		PlaygroundActions.setPostcssCssVariablesPreserveOption(value);
 	}
@@ -42248,9 +42248,9 @@ System.register('postcss-css-variables-playground/js/services/PlaygroundPersiste
 		execute: function () {
 
 			localforage.config({
-				name: 'postcss-css-variables-playground',
+				name: 'postcss-var-replace-playground',
 				version: 1.0,
-				storeName: 'postcss-css-variables-playground-settings'
+				storeName: 'postcss-var-replace-playground-settings'
 			});
 
 			playgroundSettingsStoreKey = 'PlaygroundSettingsStore';
@@ -42262,7 +42262,7 @@ System.register('postcss-css-variables-playground/js/services/PlaygroundPersiste
 				shouldLiveReload: PlaygroundActions.setShouldLiveReloadOption,
 				tabWidth: PlaygroundActions.setTabWidthOption
 			}), _defineProperty(_actionMap, playgroundSettingsStoreTypeKeys.pluginSettings, {
-				'postcss-css-variables': {
+				'postcss-var-replace': {
 					preserve: PlaygroundActions.setPostcssCssVariablesPreserveOption
 				}
 			}), _actionMap);
@@ -42279,7 +42279,7 @@ System.register('postcss-css-variables-playground/js/services/PlaygroundPersiste
 					}
 				};
 				_tempSettings[playgroundSettingsStoreTypeKeys.pluginSettings] = {
-					'postcss-css-variables': {
+					'postcss-var-replace': {
 						preserve: {
 							value: false,
 							action: PlaygroundActions.setPostcssCssVariablesPreserveOption
@@ -42292,7 +42292,7 @@ System.register('postcss-css-variables-playground/js/services/PlaygroundPersiste
 		}
 	};
 });
-System.register('postcss-css-variables-playground/js/main.js', ['react', './components/PlaygroundApp', './services/PlaygroundPersistentSettingsDAO'], function (_export, _context) {
+System.register('postcss-var-replace-playground/js/main.js', ['react', './components/PlaygroundApp', './services/PlaygroundPersistentSettingsDAO'], function (_export, _context) {
   "use strict";
 
   var React, PlaygroundApp, PlaygroundPersistentSettingsDAO;

@@ -3,7 +3,7 @@ import Loader from 'jspm-loader-css/src/loader.js';
 import inlineComments from 'postcss-inline-comment';
 import mixins from 'postcss-mixins';
 import nestedcss from 'postcss-nested';
-import cssvariables from 'postcss-css-variables';
+import cssvariables from 'postcss-var-replace';
 import autoprefixer from 'autoprefixer';
 
 import cursorHandMixin from './custom-postcss-mixins/cursor-hand.js';

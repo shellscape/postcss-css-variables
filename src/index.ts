@@ -1,25 +1,18 @@
-// PostCSS CSS Variables (postcss-css-variables)
-// v0.5.0
-//
-// https://github.com/MadLittleMods/postcss-css-variables
+import extend from 'extend';
+import type { Plugin } from 'postcss';
 
-// For Debugging
-//var nomo = require('node-monkey').start({port: 50501});
-
-var extend = require("extend");
-
-var shallowCloneNode = require("./lib/shallow-clone-node");
-var resolveValue = require("./lib/resolve-value");
-var resolveDecl = require("./lib/resolve-decl");
+import { shallowCloneNode } from './shallow-clone-node';
+import { resolveValue } from './resolve-value';
+import { resolveDecl } from './resolve-decl';
 
 // A custom property is any property whose name starts with two dashes (U+002D HYPHEN-MINUS)
 // `--foo`
 // See: http://dev.w3.org/csswg/css-variables/#custom-property
-var RE_VAR_PROP = /(--(.+))/;
+const RE_VAR_PROP = /(--(.+))/;
 
-function eachCssVariableDeclaration(css, cb) {
+function eachCssVariableDeclaration(css: any, cb: any) {
   // Loop through all of the declarations and grab the variables and put them in the map
-  css.walkDecls(function(decl) {
+  css.walkDecls((decl: any) => {
     // If declaration is a variable
     if (RE_VAR_PROP.test(decl.prop)) {
       cb(decl);
@@ -27,13 +20,12 @@ function eachCssVariableDeclaration(css, cb) {
   });
 }
 
-function cleanUpNode(node) {
+function cleanUpNode(node: any) {
   // If we removed all of the declarations in the rule(making it empty),
   // then just remove it
-  var nodeToPossiblyCleanUp = node;
+  let nodeToPossiblyCleanUp = node;
   while (nodeToPossiblyCleanUp && nodeToPossiblyCleanUp.nodes.length <= 0) {
-    var nodeToRemove =
-      nodeToPossiblyCleanUp.type !== "root" ? nodeToPossiblyCleanUp : null;
+    const nodeToRemove = nodeToPossiblyCleanUp.type !== 'root' ? nodeToPossiblyCleanUp : null;
 
     if (nodeToRemove) {
       // Get a reference to it before we remove
@@ -47,71 +39,57 @@ function cleanUpNode(node) {
   }
 }
 
-var defaults = {
+const defaults = {
   // Allows you to preserve custom properties & var() usage in output.
   // `true`, `false`, or `'computed'`
   preserve: false,
-  // Define variables via JS
-  // Simple key-value pair
-  // or an object with a `value` property and an optional `isImportant` bool property
-  variables: {},
+  // Will write media queries in the same order as in the original file.
+  // Currently defaulted to false for legacy behavior. We can update to `true` in a major version
+  preserveAtRulesOrder: false,
   // Preserve variables injected via JS with the `variables` option above
   // before serializing to CSS (`false` will remove these variables from output)
   preserveInjectedVariables: true,
-  // Will write media queries in the same order as in the original file.
-  // Currently defaulted to false for legacy behavior. We can update to `true` in a major version
-  preserveAtRulesOrder: false
+  // Define variables via JS
+  // Simple key-value pair
+  // or an object with a `value` property and an optional `isImportant` bool property
+  variables: {}
 };
 
-module.exports = (options = {}) => {
-  var opts = extend({}, defaults, options);
-
-  // Work with opts here
+export const postcssVarReplace = (options = {}): Plugin => {
+  const opts = extend({}, defaults, options) as Record<string, any>;
 
   return {
-    postcssPlugin: 'postcss-css-variables',
     Once(css, { decl, result, rule }) {
       // Transform CSS AST here
-
-      /* * /
-      try {
-      /* */
-
       // List of nodes that if empty, will be removed
       // We use this because we don't want to modify the AST when we still need to reference these later on
-      var nodesToRemoveAtEnd = [];
+      const nodesToRemoveAtEnd: any[] = [];
 
       // Keep track of the injected from `opts.variables` to remove at the end
       // if user passes `opts.preserveInjectedVariables = false`
-      var injectedDeclsToRemoveAtEnd = [];
+      const injectedDeclsToRemoveAtEnd: any[] = [];
 
       // Map of variable names to a list of declarations
-      var map = {};
+      let map: any = {};
 
       // Add the js defined variables `opts.variables` to the map
       map = extend(
         map,
-        Object.keys(opts.variables).reduce(function(
-          prevVariableMap,
-          variableName
-        ) {
-          var variableEntry = opts.variables[variableName];
+        Object.keys(opts.variables).reduce((prevVariableMap: any, variableName) => {
+          const variableEntry = opts.variables[variableName];
           // Automatically prefix any variable with `--` (CSS custom property syntax) if it doesn't have it already
-          variableName =
-            variableName.slice(0, 2) === "--"
-              ? variableName
-              : "--" + variableName;
-          var variableValue = (variableEntry || {}).value || variableEntry;
-          var isImportant = (variableEntry || {}).isImportant || false;
+          variableName = variableName.slice(0, 2) === '--' ? variableName : `--${variableName}`;
+          const variableValue = (variableEntry || {}).value || variableEntry;
+          const isImportant = (variableEntry || {}).isImportant || false;
 
           // Add a root node to the AST
-          var variableRootRule = rule({ selector: ":root" });
+          const variableRootRule = rule({ selector: ':root' });
           css.root().prepend(variableRootRule);
           // Add the variable decl to the root node
-          var varDecl = decl({
+          const varDecl = decl({
+            important: isImportant,
             prop: variableName,
-            value: variableValue,
-            important: isImportant
+            value: variableValue
           });
           variableRootRule.append(varDecl);
 
@@ -121,29 +99,27 @@ module.exports = (options = {}) => {
           }
 
           // Add the entry to the map
-          prevVariableMap[variableName] = (
-            prevVariableMap[variableName] || []
-          ).concat({
-            decl: varDecl,
-            prop: variableName,
+          prevVariableMap[variableName] = (prevVariableMap[variableName] || []).concat({
             calculatedInPlaceValue: variableValue,
-            isImportant: isImportant,
-            variablesUsed: [],
+            decl: varDecl,
+            isImportant,
+            isUnderAtRule: false,
             parent: variableRootRule,
-            isUnderAtRule: false
+            prop: variableName,
+            variablesUsed: []
           });
 
           return prevVariableMap;
-        },
-        {})
+        }, {})
       );
 
       // Chainable helper function to log any messages (warnings)
-      var logResolveValueResult = function(valueResult) {
+      const logResolveValueResult = function (valueResult: any) {
         // Log any warnings that might of popped up
-        var warningList = [].concat(valueResult.warnings);
-        warningList.forEach(function(warningArgs) {
+        const warningList: any[] = [].concat(valueResult.warnings);
+        warningList.forEach((warningArgs) => {
           warningArgs = [].concat(warningArgs);
+          // eslint-disable-next-line prefer-spread
           result.warn.apply(result, warningArgs);
         });
 
@@ -154,36 +130,35 @@ module.exports = (options = {}) => {
       // Collect all of the variables defined
       // ---------------------------------------------------------
       // ---------------------------------------------------------
-      //console.log('Collecting variables defined START');
-      eachCssVariableDeclaration(css, function(decl) {
-        var declParentRule = decl.parent;
+      eachCssVariableDeclaration(css, (decl: any) => {
+        const declParentRule = decl.parent;
 
-        var valueResults = logResolveValueResult(resolveValue(decl, map));
+        const valueResults = logResolveValueResult(resolveValue(decl, map));
         // Split out each selector piece into its own declaration for easier logic down the road
-        decl.parent.selectors.forEach(function(selector) {
+        decl.parent.selectors.forEach((selector: any) => {
           // Create a detached clone
-          var splitOutRule = shallowCloneNode(decl.parent);
+          const splitOutRule = shallowCloneNode(decl.parent);
           splitOutRule.selector = selector;
           splitOutRule.parent = decl.parent.parent;
 
-          var declClone = decl.clone();
+          const declClone = decl.clone();
           splitOutRule.append(declClone);
 
-          var prop = decl.prop;
+          const { prop } = decl;
           map[prop] = (map[prop] || []).concat({
-            decl: declClone,
-            prop: prop,
             calculatedInPlaceValue: valueResults.value,
+            decl: declClone,
             isImportant: decl.important || false,
-            variablesUsed: valueResults.variablesUsed,
-            parent: splitOutRule,
             // variables inside root or at-rules (eg. @media, @support)
-            isUnderAtRule: splitOutRule.parent.type === "atrule"
+            isUnderAtRule: splitOutRule.parent.type === 'atrule',
+            parent: splitOutRule,
+            prop,
+            variablesUsed: valueResults.variablesUsed
           });
         });
 
         let preserveDecl;
-        if (typeof opts.preserve === "function") {
+        if (typeof opts.preserve === 'function') {
           preserveDecl = opts.preserve(decl);
         } else {
           preserveDecl = opts.preserve;
@@ -193,11 +168,9 @@ module.exports = (options = {}) => {
           decl.remove();
         }
         // Or we can also just show the computed value used for that variable
-        else if (preserveDecl === "computed") {
+        else if (preserveDecl === 'computed') {
           decl.value = valueResults.value;
         }
-        // Otherwise just keep them as var declarations
-        //else {}
 
         // We add to the clean up list if we removed some variable declarations to make it become an empty rule
         // We clean up later on because we don't want to modify the AST when we still need to reference these later on
@@ -205,27 +178,23 @@ module.exports = (options = {}) => {
           nodesToRemoveAtEnd.push(declParentRule);
         }
       });
-      //console.log('Collecting variables defined END');
 
       // Resolve variables everywhere
       // ---------------------------------------------------------
       // ---------------------------------------------------------
 
       // Collect all the rules that have declarations that use variables
-      var rulesThatHaveDeclarationsWithVariablesList = [];
-      css.walk(function(rule) {
+      const rulesThatHaveDeclarationsWithVariablesList: any[] = [];
+      css.walk((rule: any) => {
         // We're only interested in Containers with children.
         if (rule.nodes === undefined) return;
 
-        var doesRuleUseVariables = rule.nodes.some(function(node) {
-          if (node.type === "decl") {
-            var decl = node;
+        const doesRuleUseVariables = rule.nodes.some((node: any) => {
+          if (node.type === 'decl') {
+            const decl = node;
             // If it uses variables
             // and is not a variable declarations that we may be preserving from earlier
-            if (
-              resolveValue.RE_VAR_FUNC.test(decl.value) &&
-              !RE_VAR_PROP.test(decl.prop)
-            ) {
+            if (resolveValue.RE_VAR_FUNC.test(decl.value) && !RE_VAR_PROP.test(decl.prop)) {
               return true;
             }
           }
@@ -234,12 +203,12 @@ module.exports = (options = {}) => {
         });
 
         if (doesRuleUseVariables) {
-          if (rule.type === "rule" && rule.selectors.length > 1) {
+          if (rule.type === 'rule' && rule.selectors.length > 1) {
             // Split out the rule into each comma separated selector piece
             // We only need to split if it's actually a Rule with multiple selectors (comma separated)
             // duplicate rules would be probably merged with cssnano (cannot be sure about nested)
-            rule.selectors.reverse().forEach(function(selector) {
-              var ruleClone = rule.cloneAfter();
+            rule.selectors.reverse().forEach((selector: string) => {
+              const ruleClone = rule.cloneAfter();
               ruleClone.selector = selector;
 
               return ruleClone;
@@ -253,18 +222,12 @@ module.exports = (options = {}) => {
         }
       });
 
-      rulesThatHaveDeclarationsWithVariablesList.forEach(function(rule) {
+      rulesThatHaveDeclarationsWithVariablesList.forEach((rule) => {
         // Resolve the declarations
-        rule.nodes.slice(0).forEach(function(node) {
-          if (node.type === "decl") {
-            var decl = node;
-            resolveDecl(
-              decl,
-              map,
-              opts.preserve,
-              opts.preserveAtRulesOrder,
-              logResolveValueResult
-            );
+        rule.nodes.slice(0).forEach((node: any) => {
+          if (node.type === 'decl') {
+            const decl = node;
+            resolveDecl(decl, map, opts.preserve, opts.preserveAtRulesOrder, logResolveValueResult);
           }
         });
       });
@@ -274,21 +237,12 @@ module.exports = (options = {}) => {
       nodesToRemoveAtEnd.forEach(cleanUpNode);
 
       // Clean up JS-injected variables marked for removal
-      injectedDeclsToRemoveAtEnd.forEach(function(injectedDecl) {
+      injectedDeclsToRemoveAtEnd.forEach((injectedDecl) => {
         injectedDecl.remove();
       });
-
-      //console.log('map', map);
-
-      /* * /
-      }
-      catch(e) {
-        //console.log('e', e.message);
-        console.log('e', e.message, e.stack);
-      }
-      /* */
-    }
+    },
+    postcssPlugin: 'postcss-var-replace'
   };
 };
 
-module.exports.postcss = true;
+postcssVarReplace.postcss = true;

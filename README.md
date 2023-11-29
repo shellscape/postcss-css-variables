@@ -1,13 +1,13 @@
-# PostCSS CSS Variables
+# postcss-var-replace
 
-[![npm version](https://badge.fury.io/js/postcss-css-variables.svg)](http://badge.fury.io/js/postcss-css-variables) [![Build Status](https://travis-ci.org/MadLittleMods/postcss-css-variables.svg)](https://travis-ci.org/MadLittleMods/postcss-css-variables) [![Gitter](https://badges.gitter.im/MadLittleMods/postcss-css-variables.svg)](https://gitter.im/MadLittleMods/postcss-css-variables?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[PostCSS](https://github.com/postcss/postcss) plugin to replace [CSS variables`](http://dev.w3.org/csswg/css-variables/) with their static values.
 
-[PostCSS](https://github.com/postcss/postcss) plugin to transform [`CSS Custom Properties (CSS variables)`](http://dev.w3.org/csswg/css-variables/) syntax into a static representation. This plugin provides a future-proof way of using **most** of CSS variables features, including selector cascading with some caveats, because this can only see the CSS, not the potentially dynamic HTML and DOM the CSS is applied to.
+This plugin provides a future-proof way of using _most_ of CSS variables features, including selector cascading (with some caveats).
 
 ### Install
 
 ```
-npm install postcss postcss-css-variables --save-dev
+pnpm add postcss postcss-var-replace -D
 ```
 
 ### Table of Contents
@@ -21,11 +21,11 @@ npm install postcss postcss-css-variables --save-dev
 - [Options](#options)
 - [Quick Reference/Notes](#quick-referencenotes)
 - [Testing](#testing)
-- [Changelog](https://github.com/MadLittleMods/postcss-css-variables/blob/master/CHANGELOG.md)
+- [Changelog](https://github.com/shellscape/postcss-var-replace/blob/master/CHANGELOG.md)
 
-# [Code Playground](https://madlittlemods.github.io/postcss-css-variables/playground/)
+# [Code Playground](https://shellscape.github.io/postcss-var-replace/playground/)
 
-[Try it in the playground](https://madlittlemods.github.io/postcss-css-variables/playground/) and see what you think! Just add some CSS and see to see the final transformed/compiled CSS. You can try anything here in the playground, too.
+[Try it in the playground](https://shellscape.github.io/postcss-var-replace/playground/) and see what you think! Just add some CSS and see to see the final transformed/compiled CSS. You can try anything here in the playground, too.
 
 # Usage
 
@@ -33,13 +33,13 @@ npm install postcss postcss-css-variables --save-dev
 
 ```js
 var postcss = require("postcss");
-var cssvariables = require("postcss-css-variables");
+var cssvariables = require("postcss-var-replace");
 
 var fs = require("fs");
 
 var mycss = fs.readFileSync("input.css", "utf8");
 
-// Process your CSS with postcss-css-variables
+// Process your CSS with postcss-var-replace
 var output = postcss([cssvariables(/*options*/)]).process(mycss).css;
 
 console.log(output);
@@ -168,11 +168,11 @@ Will be transformed to:
 
 ### Nested Rules
 
-This pairs very well with [`postcss-nested`](https://github.com/postcss/postcss-nested) or [`postcss-nesting`](https://github.com/jonathantneal/postcss-nesting), adding support for nested rules. For either, you must put the plugin before `postcss-css-variables` in the plugin stack so that the `&` references are expanded first (`postcss-css-variables` doesn't understand them). For example, with `postcss-nested`, your PostCSS setup would look like this:
+This pairs very well with [`postcss-nested`](https://github.com/postcss/postcss-nested) or [`postcss-nesting`](https://github.com/jonathantneal/postcss-nesting), adding support for nested rules. For either, you must put the plugin before `postcss-var-replace` in the plugin stack so that the `&` references are expanded first (`postcss-var-replace` doesn't understand them). For example, with `postcss-nested`, your PostCSS setup would look like this:
 
 ```js
 var postcss = require("postcss");
-var cssvariables = require("postcss-css-variables");
+var cssvariables = require("postcss-var-replace");
 var nested = require("postcss-nested");
 
 var fs = require("fs");
@@ -266,11 +266,11 @@ There is another similar plugin available, [`postcss-custom-properties`](https:/
 
 ### Interoperability and differences from `postcss-custom-properties`
 
-Putting `postcss-css-variables` in place of `postcss-custom-properties` should work out of the box.
+Putting `postcss-var-replace` in place of `postcss-custom-properties` should work out of the box.
 
 In [`postcss-custom-properties`](https://github.com/postcss/postcss-custom-properties), CSS variable declarations are specifically restricted to the `:root` selector.
 
-In `postcss-css-variables`, this is not the case and they may be declared inside any rule with whatever selector. The variables are substituted based on statically known CSS selector inheritance.
+In `postcss-var-replace`, this is not the case and they may be declared inside any rule with whatever selector. The variables are substituted based on statically known CSS selector inheritance.
 
 Here's a quick overview of the differences:
 
@@ -318,7 +318,7 @@ Note the nested markup below. We only know about the DOM's inheritance from your
 }
 ```
 
-[`postcss-custom-properties`](https://github.com/postcss/postcss-custom-properties) avoids this problem entirely by restricting itself to just the `:root` selector. This is because the developers there would prefer to not support a feature instead of something almost-spec-compliant like what `postcss-css-variables` does.
+[`postcss-custom-properties`](https://github.com/postcss/postcss-custom-properties) avoids this problem entirely by restricting itself to just the `:root` selector. This is because the developers there would prefer to not support a feature instead of something almost-spec-compliant like what `postcss-var-replace` does.
 
 # Options
 
@@ -351,7 +351,7 @@ prevents JS-injected variables from appearing in output CSS.
 
 ```js
 var postcss = require("postcss");
-var cssvariables = require("postcss-css-variables");
+var cssvariables = require("postcss-var-replace");
 
 postcss([
   cssvariables({

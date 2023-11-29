@@ -1,3 +1,5 @@
-playground/node_modules
-playground/jspm_packages
-playground/build.js
+# Note: We're ignoring this while we get the rest of the repo setup
+.snapshots
+dist
+node_modules
+playground

@@ -1,6 +1,8 @@
-node_modules/
-npm-debug.log
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-playground/node_modules/
-playground/jspm_packages/
-todo.md
+.eslintcache
+node_modules
+dist
+.DS_Store
+.pnpm-debug.log*
+.env
