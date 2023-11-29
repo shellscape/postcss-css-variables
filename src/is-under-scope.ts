@@ -7,7 +7,8 @@ const RE_AT_RULE_SCOPE_PIECE = /^@.*/;
 // This will match pseudo selectors that have a base part
 // ex. .foo:hover
 // It will NOT match `:root`
-const RE_PSEUDO_SELECTOR = /([^\s:]+)((?::|::)[^\s]*?)(\s+|$)/;
+// const RE_PSEUDO_SELECTOR = /([^\s:]+)((?::|::)[^\s]*?)(\s+|$)/;
+const RE_PSEUDO_SELECTOR = /([^\s:]+)(?<!\\)((?::|::)[^\s]*?)(\s+|$)/;
 
 function getScopeMatchResults(nodeScopeList: any, scopeNodeScopeList: any) {
   let currentPieceOffset: any;

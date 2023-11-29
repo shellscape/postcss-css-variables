@@ -50,14 +50,11 @@
     "postcss": "^8.4.31"
   },
   "dependencies": {
-    "balanced-match": "^1.0.0",
-    "escape-string-regexp": "^1.0.3",
-    "extend": "^3.0.1"
+    "balanced-match": "^2.0.0",
+    "escape-string-regexp": "^4.0.0"
   },
   "devDependencies": {
     "@types/balanced-match": "^3.0.2",
-    "@types/escape-string-regexp": "^2.0.1",
-    "@types/extend": "^3.0.4",
     "ava": "^5.3.1",
     "bluebird": "^3.5.0",
     "chai": "^4.1.1",

@@ -18,8 +18,6 @@ const discardComments = require('postcss-discard-comments');
 
 const { postcssVarReplace: cssvariables } = require('../dist');
 
-console.log({ cssvariables });
-
 const MOCK_JS_VARIABLES = {
   '--js-defined-important': {
     isImportant: true,
@@ -316,6 +314,8 @@ describe('postcss-var-replace', () => {
   });
 
   test('should accept whitespace in var() declarations', 'whitespace-in-var-declaration');
+
+  test('should replace in scoped blocks', 'background-url');
 
   it('should not parse malformed var() declarations', () =>
     expect(

@@ -1,4 +1,3 @@
-import extend from 'extend';
 import type { Plugin } from 'postcss';
 
 import { shallowCloneNode } from './shallow-clone-node';
@@ -56,7 +55,7 @@ const defaults = {
 };
 
 export const postcssVarReplace = (options = {}): Plugin => {
-  const opts = extend({}, defaults, options) as Record<string, any>;
+  const opts = Object.assign({}, defaults, options) as Record<string, any>;
 
   return {
     Once(css, { decl, result, rule }) {
@@ -73,7 +72,7 @@ export const postcssVarReplace = (options = {}): Plugin => {
       let map: any = {};
 
       // Add the js defined variables `opts.variables` to the map
-      map = extend(
+      map = Object.assign(
         map,
         Object.keys(opts.variables).reduce((prevVariableMap: any, variableName) => {
           const variableEntry = opts.variables[variableName];
