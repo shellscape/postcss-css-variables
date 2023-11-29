@@ -1,3 +1,10 @@
+[npm]: https://img.shields.io/npm/v/postcss-var-replace
+[npm-url]: https://www.npmjs.com/package/postcss-var-replace
+
+[![npm][npm]][npm-url]
+[![Join our Discord](https://img.shields.io/badge/join_our-Discord-5a64ea)](https://discord.gg/FywZN57mTg)
+[![libera manifesto](https://img.shields.io/badge/libera-manifesto-lightgrey.svg)](https://liberamanifesto.com)
+
 # postcss-var-replace
 
 [PostCSS](https://github.com/postcss/postcss) plugin to replace [CSS variables`](http://dev.w3.org/csswg/css-variables/) with their static values.
@@ -32,12 +39,12 @@ pnpm add postcss postcss-var-replace -D
 [_For more general PostCSS usage, look here._](https://github.com/postcss/postcss#usage)
 
 ```js
-var postcss = require("postcss");
-var cssvariables = require("postcss-var-replace");
+var postcss = require('postcss');
+var cssvariables = require('postcss-var-replace');
 
-var fs = require("fs");
+var fs = require('fs');
 
-var mycss = fs.readFileSync("input.css", "utf8");
+var mycss = fs.readFileSync('input.css', 'utf8');
 
 // Process your CSS with postcss-var-replace
 var output = postcss([cssvariables(/*options*/)]).process(mycss).css;
@@ -171,13 +178,13 @@ Will be transformed to:
 This pairs very well with [`postcss-nested`](https://github.com/postcss/postcss-nested) or [`postcss-nesting`](https://github.com/jonathantneal/postcss-nesting), adding support for nested rules. For either, you must put the plugin before `postcss-var-replace` in the plugin stack so that the `&` references are expanded first (`postcss-var-replace` doesn't understand them). For example, with `postcss-nested`, your PostCSS setup would look like this:
 
 ```js
-var postcss = require("postcss");
-var cssvariables = require("postcss-var-replace");
-var nested = require("postcss-nested");
+var postcss = require('postcss');
+var cssvariables = require('postcss-var-replace');
+var nested = require('postcss-nested');
 
-var fs = require("fs");
+var fs = require('fs');
 
-var mycss = fs.readFileSync("input.css", "utf8");
+var mycss = fs.readFileSync('input.css', 'utf8');
 
 var output = postcss([
   // Flatten/unnest rules
@@ -350,18 +357,18 @@ repeating custom property definitions in every module passed through this plugin
 prevents JS-injected variables from appearing in output CSS.
 
 ```js
-var postcss = require("postcss");
-var cssvariables = require("postcss-var-replace");
+var postcss = require('postcss');
+var cssvariables = require('postcss-var-replace');
 
 postcss([
   cssvariables({
     variables: {
-      "--some-var": "100px",
-      "--other-var": {
-        value: "#00ff00"
+      '--some-var': '100px',
+      '--other-var': {
+        value: '#00ff00'
       },
-      "--important-var": {
-        value: "#ff0000",
+      '--important-var': {
+        value: '#ff0000',
         isImportant: true
       }
     }
@@ -392,3 +399,17 @@ Run once:
 Run whenever you want to test:
 
 `npm run test`
+
+## Contributing, Working With This Repo
+
+We 💛 contributions! After all, this is a community-driven project. We have no corporate sponsorship or backing. The maintainers and users keep this project going!
+
+Please check out our [Contribution Guide](./CONTRIBUTING.md).
+
+## Attribution
+
+This is a modern fork of https://github.com/MadLittleMods/postcss-css-variables
+
+## License
+
+[MIT License](./LICENSE.md)
