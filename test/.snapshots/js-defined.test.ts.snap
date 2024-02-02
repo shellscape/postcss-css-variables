@@ -1,0 +1,23 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`js-defined > cast non-string values to string 1`] = `".box{top:undefined;width:undefined;height:undefined;overflow:undefined;font-size:undefined;visibility:undefined;opacity:undefined}"`;
+
+exports[`js-defined > preserve -- declarations and var() values with \`options.variables\` AND \`options.preserve\` 1`] = `
+":root{--js-defined-no-prefix:#ff0000}
+:root{--js-defined2:80px}
+:root{--js-defined1:75px}
+:root{--js-defined-important:#0f0!important}
+.box1{width:75px;width:var(--js-defined1);height:80px;height:var(--js-defined2);background:#ff0000;background:var(--js-defined-no-prefix)}"
+`;
+
+exports[`js-defined > preserve var() values and clean injected declarations with \`options.variables\` AND \`options.preserve\` AND \`options.preserveInjectedVariables: false\` 1`] = `
+":root{}
+:root{}
+:root{}
+:root{}
+.box1{width:75px;width:var(--js-defined1);height:80px;height:var(--js-defined2);background:#ff0000;background:var(--js-defined-no-prefix)}"
+`;
+
+exports[`js-defined > work with JS defined important variables 1`] = `".box1{background-color:#0f0}"`;
+
+exports[`js-defined > work with JS defined variables 1`] = `".box1{width:75px;height:80px;background:#ff0000}"`;

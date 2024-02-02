@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`no-var-func > should work when there are no var() functions to consume declarations 1`] = `".box{width:100px}"`;
+
+exports[`no-var-func > should work when there are no var() functions(just \`:root\`) to consume declarations 1`] = `""`;

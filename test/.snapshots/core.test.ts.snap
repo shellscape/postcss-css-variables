@@ -1,0 +1,21 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`core > accept whitespace in var() declarations 1`] = `".bar{width:1px;height:1px;margin-top:1px}"`;
+
+exports[`core > replace in scoped blocks 1`] = `".xl\\\\:bg-green-500{background-color:rgb(34 197 94/1)}"`;
+
+exports[`core > throw on malformed var() 1`] = `[CssSyntaxError: <css input>:7:12: Unclosed bracket]`;
+
+exports[`core > work when no variable name passed to \`var()\` 1`] = `".box-empty{width:var()}"`;
+
+exports[`core > work with \`!important\` variable declarations 1`] = `".box-foo{width:210px}.box-bar{width:320px}"`;
+
+exports[`core > work with any combinator selector if the last piece is the variable we have in the map 1`] = `".foo + .bar{width:150px}"`;
+
+exports[`core > work with locally scoped variable in a non-root rule 1`] = `".box-foo{width:150px;.box-bar{width:150px}}"`;
+
+exports[`core > work with star selector 1`] = `".foo{background:#0f0}"`;
+
+exports[`core > work with variables declared in root 1`] = `".box-foo{width:15vw}.box-bar{width:150px}"`;
+
+exports[`core > work with variables with parenthesis in fallback 1`] = `".box{box-shadow:0px 2px 2px 0px #fff}"`;

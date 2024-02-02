@@ -1,0 +1,8 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`pseudo > should work with pseudo selectors 1`] = `".foo{color:#ff0000}.foo:before{color:#ff0000}"`;
+
+exports[`pseudo > should work with variables declared in pseudo selectors 1`] = `
+".foo{color:#ff0000}
+.foo:hover{color:#00ff00}"
+`;

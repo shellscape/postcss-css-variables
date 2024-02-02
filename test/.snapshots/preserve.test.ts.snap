@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`preserve values > preserves computed value when \`preserve\` is \`computed\` 1`] = `":root{--color-one:#0000ff;--color-two:#00ff00;--color-three:#00ff00}.foo{prop:before;color:#0000ff}.bar{color:#00ff00;prop:after}.foo-and-bar{prop:before;color:#ff0000;otherprop:after}"`;
+
+exports[`preserve values > preserves variables when \`preserve\` function applies 1`] = `":root{--color-foo:#00ff00;--color-bar:var(--color-two)}.before{prop:before;color:#0000ff}.after{color:#00ff00;color:var(--color-foo);prop:after}.before-and-after{prop:before;color:#ff0000;color:var(--missing,#ff0000);otherprop:after}"`;
+
+exports[`preserve values > preserves variables when \`preserve\` is \`true\` 1`] = `":root{--color-one:#0000ff;--color-two:#00ff00;--color-three:var(--color-two)}.before{prop:before;color:#0000ff;color:var(--color-one)}.after{color:#00ff00;color:var(--color-two);prop:after}.before-and-after{prop:before;color:#ff0000;color:var(--missing,#ff0000);otherprop:after}"`;

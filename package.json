@@ -32,7 +32,7 @@
     "lint:fix": "eslint . --fix",
     "prepublishOnly": "pnpm build",
     "pretest": "pnpm build",
-    "test": "mocha"
+    "test": "vitest --config ./vitest.config.ts"
   },
   "files": [
     "dist/**"
@@ -55,20 +55,17 @@
   },
   "devDependencies": {
     "@types/balanced-match": "^3.0.2",
-    "ava": "^5.3.1",
-    "bluebird": "^3.5.0",
-    "chai": "^4.1.1",
-    "chai-as-promised": "^7.1.1",
+    "@types/node": "^20.11.16",
     "cssnano": "^4.0.0",
     "eslint-config-shellscape": "^6.0.1",
     "husky": "^8.0.3",
     "lint-staged": "^15.1.0",
-    "mocha": "^5.2.0",
     "postcss": "^8.4.31",
     "postcss-discard-comments": "^4.0.0",
     "postcss-normalize-whitespace": "^4.0.0",
     "tsup": "^8.0.1",
-    "typescript": "^5.3.2"
+    "typescript": "^5.3.2",
+    "vitest": "^1.2.2"
   },
   "types": "dist/index.d.mts",
   "funding": {

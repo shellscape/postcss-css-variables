@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`descendant > should work with css4 descendant selector type "nesting" 1`] = `".some-foo-group >> .box-foo{width:180px}.some-bar-group >> .box-bar{width:300px}.some-foo-group{width:150px;.box-foo{width:180px}}"`;
+
+exports[`descendant > should work with descendant selector type "nesting" 1`] = `".some-foo-group .box-foo{width:150px}.some-bar-group .box-bar{width:300px}"`;
+
+exports[`descendant > should work with direct descendant selector 1`] = `".foo > .bar{width:150px}"`;
+
+exports[`descendant > should work with direct descendant selector where variables are scoped in a descendant selector 1`] = `".baz > .qux > .wan{width:300px}.some-parent > .baz > .qux > .wan{width:300px}.some-parent > .baz > .wan > .qux{width:300px}.some-parent > .baz > .qux > .wan .further-child .ger{width:320px}"`;
+
+exports[`descendant > should work with direct descendant selector where variables are scoped in a direct descendant selector 1`] = `".foo > .bar > .baz{width:400px}.qux + .foo > .bar > .baz{width:400px}.foo > .bar + .baz{width:undefined}"`;

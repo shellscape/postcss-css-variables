@@ -4,12 +4,28 @@ import { shallowCloneNode } from './shallow-clone-node';
 import { resolveValue } from './resolve-value';
 import { resolveDecl } from './resolve-decl';
 
+export interface PostCssVarReplaceOptions {
+  // Allows you to preserve custom properties & var() usage in output.
+  // `true`, `false`, or `'computed'`
+  preserve?: boolean | 'computed' | ((decl: any) => void);
+  // Will write media queries in the same order as in the original file.
+  // Currently defaulted to false for legacy behavior. We can update to `true` in a major version
+  preserveAtRulesOrder?: boolean;
+  // Preserve variables injected via JS with the `variables` option above
+  // before serializing to CSS (`false` will remove these variables from output)
+  preserveInjectedVariables?: boolean;
+  // Define variables via JS
+  // Simple key-value pair
+  // or an object with a `value` property and an optional `isImportant` bool property
+  variables?: Record<string, any>;
+}
+
 // A custom property is any property whose name starts with two dashes (U+002D HYPHEN-MINUS)
 // `--foo`
 // See: http://dev.w3.org/csswg/css-variables/#custom-property
 const RE_VAR_PROP = /(--(.+))/;
 
-function eachCssVariableDeclaration(css: any, cb: any) {
+function eachCssVariableDeclaration(css: any, cb: (decl: any) => void) {
   // Loop through all of the declarations and grab the variables and put them in the map
   css.walkDecls((decl: any) => {
     // If declaration is a variable
@@ -38,7 +54,7 @@ function cleanUpNode(node: any) {
   }
 }
 
-const defaults = {
+const defaults: PostCssVarReplaceOptions = {
   // Allows you to preserve custom properties & var() usage in output.
   // `true`, `false`, or `'computed'`
   preserve: false,
@@ -54,7 +70,7 @@ const defaults = {
   variables: {}
 };
 
-export const postcssVarReplace = (options = {}): Plugin => {
+export const postcssVarReplace = (options = {} as PostCssVarReplaceOptions): Plugin => {
   const opts = Object.assign({}, defaults, options) as Record<string, any>;
 
   return {

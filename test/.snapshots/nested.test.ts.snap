@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`nested > should not mangle outer function parentheses - calc 1`] = `".box-foo{width:calc(1000% - 150px)}.box-foo{width:undefined}.box-foo{width:calc(150px - 50px)}.box-foo{width:calc(calc(100px / 2) / 2)}"`;
+
+exports[`nested > should not mangle outer function parentheses - calc with fallback 1`] = `".box-foo{width:calc(58.3333333333% - 150px)}.box-foo{width:calc(58.3333333333% - 100px)}"`;
+
+exports[`nested > should not mangle outer function parentheses - calc with fallback var() 1`] = `".box-foo{width:calc(58.3333333333% - 150px)}.box-foo{width:calc(58.3333333333% - 100px)}.box-foo{width:calc(58.3333333333% - 50px)}"`;
+
+exports[`nested > should not mangle outer function parentheses - with fallback 1`] = `".box-foo{background-color:color(white)}.box-foo{background-color:color(red)}"`;
+
+exports[`nested > should not mangle outer function parentheses 1`] = `".box-foo{background-color:color(red)}.box-foo{background-color:rgba(255,0,0,0.3)}.box-foo{background-color:undefined}"`;
+
+exports[`nested > should work with nested at-rules containing properties 1`] = `"@page{@footnote{background-color:red}}"`;

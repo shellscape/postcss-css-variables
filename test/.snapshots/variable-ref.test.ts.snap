@@ -1,0 +1,9 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`variable-ref > should work with local variables that reference other variables with at-rule changing the value 1`] = `".foo{width:150px}@media (max-width: 960px){.foo{width:300px}}"`;
+
+exports[`variable-ref > should work with variable with calc-expression that reference other variables 1`] = `".foo{width:calc(50px + 150px)}@media (max-width: 960px){.foo{width:calc(50px + 300px)}}"`;
+
+exports[`variable-ref > should work with variables that reference other variables 1`] = `".box-foo{width:calc(150px + 15vw)}"`;
+
+exports[`variable-ref > should work with variables that reference other variables with at-rule changing the value 1`] = `".foo{width:150px}@media (max-width: 960px){.foo{width:300px}}"`;

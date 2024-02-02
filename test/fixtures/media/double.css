@@ -1,0 +1,6 @@
+@media (prefers-color-scheme: dark) {
+  .dark\:bg-black {
+    --un-bg-opacity: 1;
+    background-color: rgb(0 0 0 / var(--un-bg-opacity));
+  }
+}

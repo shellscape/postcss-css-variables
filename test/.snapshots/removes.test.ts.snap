@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`removes > should clean up neseted rules if we removed variable declarations to make it empty 1`] = `"@media (max-width: 1000px){@media (max-height: 500px){:root{background:#ff0000}}}"`;
+
+exports[`removes > should clean up rules if we removed variable declarations to make it empty 1`] = `":root{background:#ff0000}"`;

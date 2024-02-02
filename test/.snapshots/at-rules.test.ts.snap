@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`at-rules > add rule declaration of property in @support 1`] = `".box{width:100px}@supports (display: flex){.box{width:200px}}"`;
+
+exports[`at-rules > work with at-rules containing properties 1`] = `"@font-face{font-family:'my-font-family-name';src:url('myfont.woff2') format('woff2')}"`;

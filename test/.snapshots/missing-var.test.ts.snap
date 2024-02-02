@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`missing-var > use fallback value if provided with missing variables 1`] = `".box-foo{width:undefined}.box-bar{width:30px}"`;
+
+exports[`missing-var > use fallback variable if provided with missing variables 1`] = `".box-foo{width:undefined}.box-bar{width:100px}"`;
+
+exports[`missing-var > use fallback variable if provided with missing variables calc 1`] = `".box-bar{width:calc(150px + 100px)}"`;
+
+exports[`missing-var > use fallback variable if provided with missing variables nested 1`] = `".box-bar{width:100px}"`;
+
+exports[`missing-var > work with missing variables 1`] = `".box-foo{width:undefined}"`;

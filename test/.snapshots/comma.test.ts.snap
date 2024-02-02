@@ -1,0 +1,5 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`comma > work use the correct variable in comma separated selector 1`] = `".some-foo-namespace .foo{color:red}.some-bar-namespace .bar{color:blue}"`;
+
+exports[`comma > work with variables defined in comma separated selector 1`] = `".some-bar-namespace * ~ *{margin-top:13px}"`;

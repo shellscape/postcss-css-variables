@@ -1,0 +1,7 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`self-ref > should work with circular reference 1`] = `"body{color:undefined}"`;
+
+exports[`self-ref > should work with variables that try to self reference 1`] = `"body{color:undefined}"`;
+
+exports[`self-ref > should work with variables that try to self reference and fallback properly 1`] = `"body{color:#0000ff;color:#00ff00}"`;

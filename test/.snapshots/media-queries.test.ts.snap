@@ -1,0 +1,13 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`media queries > preserves variables in @media when \`preserve\` is \`true\` 1`] = `".box{width:100px}@media (max-width: 1000px){.box{width:200px}}"`;
+
+exports[`media queries > should add rule declaration of property in @media 1`] = `".box{width:100px}@media (max-width: 1000px){.box{width:200px}}"`;
+
+exports[`media queries > should not double media queryies 1`] = `"@media (prefers-color-scheme: dark){.dark\\:bg-black{background-color:rgb(0 0 0/1)}@media (prefers-color-scheme: dark){.dark\\:bg-black{background-color:rgb(0 0 0/1)}}}"`;
+
+exports[`media queries > should work with @media, preserving rule order 1`] = `".box{width:150px}@media (min-width: 1000px){.box{width:300px}}@media (min-width: 1250px){.box{width:450px}}"`;
+
+exports[`media queries > should work with nested @media 1`] = `".box{width:150px}@media print{@media (max-width: 1250px){@media (max-width: 1000px){.box{width:450px}}}}@media print{@media (max-width: 1250px){.box{width:300px}}}"`;
+
+exports[`media queries > should work with nested @media, preserving rule order 1`] = `".box{width:150px}@media print{@media (min-width: 1000px){.box{width:300px}}}@media print{@media (min-width: 1000px){@media (min-width: 1250px){.box{width:450px}}}}"`;

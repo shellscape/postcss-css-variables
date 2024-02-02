@@ -1,4 +1,0 @@
-div {
-	/* missing closing ')' */
-	color: var(--foo, rgba(0, 255, 0, 0.75);
-}
